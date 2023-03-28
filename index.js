@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -8,6 +9,10 @@ require('dotenv').config();
 
 const LOGIN = process.env.LOGIN;
 const PASS = process.env.PASSWORD;
+
+app.use(cors());
+app.use(express.json({extended: true}));
+app.use('/api/auth/registration', require('./routes/auth.route.js'));
 
 
 async function start () {
